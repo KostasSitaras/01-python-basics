@@ -1,38 +1,47 @@
-print("Simple Calculator")
+def calculate(first_number, operator, second_number):
+    if operator == "+":
+        return first_number + second_number
 
-while True:
-    try:
-        first_number = float(input("Enter the first number: "))
-        operator = input("Enter operator (+, -, *, /): ")
-        second_number = float(input("Enter the second number: "))
+    elif operator == "-":
+        return first_number - second_number
 
-        if operator == "+":
-            result = first_number + second_number
-            print("The result is:", result)
+    elif operator == "*":
+        return first_number * second_number
 
-        elif operator == "-":
-            result = first_number - second_number
-            print("The result is:", result)
+    elif operator == "/":
+        if second_number == 0:
+            print("Error: You cannot divide by zero.")
+            return None
+        else:
+            return first_number / second_number
 
-        elif operator == "*":
-            result = first_number * second_number
-            print("The result is:", result)
+    else:
+        print("Invalid operator.")
+        return None
 
-        elif operator == "/":
-            if second_number == 0:
-                print("Error: You cannot divide by zero.")
-            else:
-                result = first_number / second_number
+
+def run_calculator():
+    print("Simple Calculator")
+
+    while True:
+        try:
+            first_number = float(input("Enter the first number: "))
+            operator = input("Enter operator (+, -, *, /): ")
+            second_number = float(input("Enter the second number: "))
+
+            result = calculate(first_number, operator, second_number)
+
+            if result is not None:
                 print("The result is:", result)
 
-        else:
-            print("Invalid operator.")
+        except ValueError:
+            print("Error: Please enter valid numbers.")
 
-    except ValueError:
-        print("Error: Please enter valid numbers.")
+        again = input("Do you want to calculate again? (yes/no): ")
 
-    again = input("Do you want to calculate again? (yes/no): ")
+        if again.lower() != "yes":
+            print("Goodbye!")
+            break
 
-    if again.lower() != "yes":
-        print("Goodbye!")
-        break
+
+run_calculator()
